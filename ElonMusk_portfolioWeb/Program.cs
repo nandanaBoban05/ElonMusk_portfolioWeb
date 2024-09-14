@@ -20,6 +20,20 @@ namespace ElonMusk_portfolioWeb
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+            // enable cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+                    });
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,6 +46,8 @@ namespace ElonMusk_portfolioWeb
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseRouting();
+            app.UseCors("AllowSpecificOrigins");
 
 
             app.MapControllers();

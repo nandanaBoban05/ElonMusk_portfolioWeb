@@ -9,5 +9,6 @@ namespace ElonMusk_portfolioWeb.Data
             
         }
        public DbSet<Contact>  Contacts { get; set; }
+        public DbSet<Project> Projects { get; set; }
     }
 }
