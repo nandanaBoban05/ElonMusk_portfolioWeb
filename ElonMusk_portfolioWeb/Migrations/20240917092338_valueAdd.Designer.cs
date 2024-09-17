@@ -3,6 +3,7 @@ using ElonMusk_portfolioWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElonMusk_portfolioWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240917092338_valueAdd")]
+    partial class valueAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,6 +76,15 @@ namespace ElonMusk_portfolioWeb.Migrations
                     b.HasKey("DetailId");
 
                     b.ToTable("Details");
+
+                    b.HasData(
+                        new
+                        {
+                            DetailId = 1,
+                            Email = "elonmusk@example.com",
+                            Occupation = "CEO of SpaceX, Tesla, etc.",
+                            Phone = "1234567890"
+                        });
                 });
 
             modelBuilder.Entity("ElonMusk_portfolioWeb.Models.Enitites.Login", b =>
@@ -119,29 +131,6 @@ namespace ElonMusk_portfolioWeb.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            ProjectId = 1,
-                            Description = "Cybertruck: Tesla's all-electric Cybertruck is set to begin production,with Musk highlighting its durability and futuristic design.\r\nThe vehicle aims to disrupt the traditional truck market with its unique features and electric powertrain.",
-                            ImageUrl = "https://wallpaperaccess.com/full/846579.jpg",
-                            Name = "Tesla"
-                        },
-                        new
-                        {
-                            ProjectId = 2,
-                            Description = "Starship: SpaceX is actively working on Starship, a fully reusable spacecraft designed for missions to Mars and beyond. The spacecraft aims to make space travel more affordable and sustainable. Test flights and development are ongoing, with plans for operational missions in the near future.\r\n",
-                            ImageUrl = "https://i.pinimg.com/736x/b6/12/2e/b6122e067cad4cde07468d6627544989.jpg",
-                            Name = "SpaceX"
-                        },
-                        new
-                        {
-                            ProjectId = 3,
-                            Description = "Brain-Computer Interfaces: Neuralink is working on advanced brain-computer interface technologies. The company aims to develop devices that can treat neurological conditions and eventually enable direct communication between the human brain and computers.",
-                            ImageUrl = "https://th.bing.com/th/id/R.1e3159c54758a954464cdfe581cc387a?rik=HMGyr2Hl2hcBqg&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f61422d4c713a6811602aa6b0%2ft%2f6151f784a101dd20189704a4%2f1632761732961%2fNeurolink%2blogo.jpg%3fformat%3d1500w&ehk=aYcTvTWshEucBV4Xn0jNeBM0HKq2wTwfx4HQfJlx0xA%3d&risl=&pid=ImgRaw&r=0",
-                            Name = "Neuralink"
-                        });
                 });
 #pragma warning restore 612, 618
         }
