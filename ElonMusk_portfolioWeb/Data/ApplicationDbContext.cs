@@ -23,6 +23,10 @@ namespace ElonMusk_portfolioWeb.Data
 
 
             );
+
+            modelBuilder.Entity<Detail>().HasData(
+                new Detail { DetailId = 1, Occupation = "Ceo of SpaceX", Email = "elonmusk@gmail.com", Phone = "9541366558" }
+            );
         }
 
         }
